@@ -1,0 +1,105 @@
+<nb-card>
+    <nb-card-body>
+        <h2>{{ travelName }}</h2>
+        <h4>{{ originDestination }}</h4>
+        <h5>{{ departureTime }} | {{ description }}</h5>
+
+        <nb-alert status="info" class="step step-1">
+            <span class="step-number">1</span>
+            <span class="step-title">Select your seat</span>
+        </nb-alert>
+
+        <div class="legends">
+            <div *ngFor="let legend of legends" class="legend">
+                <span [class]="legend.class"></span>
+                <label>{{ legend.label }}</label>
+            </div>
+        </div>
+
+        <div class="seat-map">
+            <div *ngFor="let section of seatMapSections" class="seat-map-section">
+                <div class="title">{{ section.title }}</div>
+                <div *ngFor="let row of section.rows" class="seat-row">
+                    <div *ngFor="let seat of row" [class]="seat.class" (click)="selectSeat(seat)">
+                        {{ seat.number }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <nb-alert status="success" class="step step-2">
+            <span class="step-number">2</span>
+            <span class="step-title">Passenger Details</span>
+        </nb-alert>
+
+        <div *ngFor="let passenger of passengerDetails; let i = index" class="passenger-details payment-details-row">
+            <label class="passenger-label"><nb-icon nbPrefix icon="person"></nb-icon> Passenger {{i + 1}}</label>
+            <nb-form-field class="passenger-field">
+                <input nbInput placeholder="Name" [(ngModel)]="passenger.name">
+            </nb-form-field>
+
+            <nb-form-field class="passenger-field">
+                <input nbInput placeholder="Age" type="number" [(ngModel)]="passenger.age">
+            </nb-form-field>
+
+            <nb-select class="passenger-field" placeholder="Gender" [(ngModel)]="passenger.gender">
+                <nb-icon nbPrefix icon="person-outline"></nb-icon>
+                <nb-option value="Male">Male</nb-option>
+                <nb-option value="Female">Female</nb-option>
+                <nb-option value="Other">Other</nb-option>
+            </nb-select>
+        </div>
+
+        <nb-alert status="warning" class="step step-3">
+            <span class="step-number">3</span>
+            <span class="step-title">Payment Details</span>
+        </nb-alert>
+
+        <div class="fare-details">
+            <h5>Fare Details:</h5>
+            <p>Number of Passengers: {{ passengers }}</p>
+            <p>Fare per Passenger: {{ farePerPassenger }}</p>
+            <p>Total: {{ totalFare }}</p>
+            <p>Tax (18%): {{ taxAmount }}</p>
+            <p><strong>Grand Total: {{ grandTotal }}</strong></p>
+        </div>
+
+        <div class="payment-method payment-details-row">
+            <nb-radio-group [(ngModel)]="payment.method" name="paymentMethod">
+                <nb-radio value="card">Card</nb-radio>
+                <nb-radio value="upi">UPI</nb-radio>
+                <nb-radio value="cash">Cash</nb-radio>
+            </nb-radio-group>
+        </div>
+
+        <div class="payment-details payment-details-row" *ngIf="payment.method === 'card'">
+            <nb-form-field class="payment-field">
+                <nb-icon nbPrefix icon="credit-card"></nb-icon>
+                <input nbInput placeholder="Card Number" [(ngModel)]="payment.cardNumber">
+            </nb-form-field>
+
+            <nb-form-field class="payment-field">
+                <nb-icon nbPrefix icon="calendar"></nb-icon>
+                <input nbInput placeholder="Expiry Date (MM/YY)" [(ngModel)]="payment.expiryDate">
+            </nb-form-field>
+
+            <nb-form-field class="payment-field">
+                <nb-icon nbPrefix icon="lock"></nb-icon>
+                <input nbInput placeholder="CVV" type="password" [(ngModel)]="payment.cvv">
+            </nb-form-field>
+        </div>
+
+        <div class="payment-details payment-details-row" *ngIf="payment.method === 'upi'">
+            <nb-form-field class="payment-field">
+                <nb-icon nbPrefix icon="keypad"></nb-icon>
+                <input nbInput placeholder="UPI ID" [(ngModel)]="payment.upiId">
+            </nb-form-field>
+        </div>
+
+        <div class="payment-details" *ngIf="payment.method === 'cash'">
+            <p>You have chosen to pay by cash. Please have the exact amount ready.</p>
+        </div>
+
+        <button nbButton status="primary" class="button" (click)="bookTicket()">BOOK TICKET</button>
+    </nb-card-body>
+</nb-card>

@@ -1,0 +1,191 @@
+/* seat-selection.component.scss */
+.step {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+
+    .step-number {
+        color: #fff;
+        padding: 10px 15px;
+        border-radius: 50%;
+        font-size: 20px;
+        margin-right: 15px;
+    }
+
+    .step-title {
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    &.step-1 .step-number {
+        background-color: #007bff;
+    }
+
+    &.step-2 .step-number {
+        background-color: #28a745;
+    }
+
+    &.step-3 .step-number {
+        background-color: #ffc107;
+    }
+}
+
+.legends {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 20px;
+
+    .legend {
+        display: flex;
+        align-items: center;
+        margin: 10px;
+
+        span {
+            width: 20px;
+            height: 20px;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+
+        .booked {
+            background-color: #f44336;
+        }
+
+        .available {
+            background-color: #4caf50;
+        }
+
+        /* .ladies {
+            background-color: #f08080;
+        }
+
+        .men {
+            background-color: #6495ed;
+        }
+
+        .blocked {
+            background-color: #9e9e9e;
+        } */
+    }
+}
+
+.seat-map {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    justify-content: space-around;
+
+    .seat-map-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 20px;
+
+        .title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .seat-row {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 5px;
+
+            .seat {
+                width: 30px;
+                height: 30px;
+                border: 1px solid #ddd;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+
+                &.booked {
+                    background-color: #f44336;
+                    cursor: not-allowed;
+                }
+
+                &.available {
+                    background-color: #4caf50;
+                }
+
+                &.selected {
+                    background-color: #ffeb3b;
+                }
+
+                /* &.ladies {
+                    background-color: #f08080;
+                }
+
+                &.men {
+                    background-color: #6495ed;
+                }
+
+                &.blocked {
+                    background-color: #9e9e9e;
+                    cursor: not-allowed;
+                } */
+            }
+        }
+    }
+}
+
+.passenger-details,
+.payment-details-row {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 15px;
+
+    nb-form-field,
+    nb-select {
+        flex: 1;
+        margin-right: 15px;
+    }
+
+    nb-form-field:last-child,
+    nb-select:last-child {
+        margin-right: 0;
+    }
+}
+
+.payment-method {
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-around;
+
+    nb-radio-group {
+        display: flex;
+        justify-content: space-around;
+        flex: 1;
+
+        nb-radio {
+            margin-right: 15px;
+        }
+
+        nb-radio:last-child {
+            margin-right: 0;
+        }
+    }
+}
+
+.payment-details {
+    nb-form-field {
+        margin-bottom: 15px;
+        width: 100%;
+    }
+}
+
+.fare-details {
+    margin: 20px 0;
+    font-size: 16px;
+
+    p {
+        margin: 5px 0;
+    }
+
+    strong {
+        font-size: 18px;
+    }
+}

@@ -1,0 +1,15 @@
+<nb-layout-header fixed class="navbar">
+    <div class="navbar-left">
+        <a href="/booking" class="brand-link">
+            <img src="../../../../assets/images/busLogo2.png" class="brand-logo" alt="Bus Booking Logo">
+        </a>
+    </div>
+    <div class="navbar-right" *ngIf="isLoggedIn()">
+        <nb-user size="large" [name]="user.name" [nbContextMenu]="items" nbContextMenuTag="my-context-menu" onlyPicture
+            color="#cccccc" class="user-profile">
+        </nb-user>
+        <nb-actions>
+            <nb-action icon="log-out" (click)="logout()"></nb-action>
+        </nb-actions>
+    </div>
+</nb-layout-header>

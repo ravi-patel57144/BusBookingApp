@@ -1,0 +1,60 @@
+<div class="container">
+    <div class="sort-options">
+        <button nbButton status="info" shape="round" (click)="allJourney()">All</button>
+        <button nbButton status="info" shape="round" (click)="upcomingJourney()">Upcoming Journey</button>
+        <button nbButton status="info" shape="round" (click)="pastJourney()">Past Journey</button>
+        <button nbButton status="info" shape="round" (click)="cancelledJourney()">Cancelled Journey</button>
+    </div>
+    <nb-card class="journey" *ngFor="let journey of filteredJourneys">
+        <nb-card-header>
+            <div class="journey-header">
+                <h3 class="journey-title">{{ journey.travelsName }} ({{ journey.description }})</h3>
+                <div class="journey-ticket">
+                    <span>Ticket No: {{ journey.ticketNo }}</span>
+                    <nb-icon icon="email-outline"></nb-icon>
+                </div>
+            </div>
+        </nb-card-header>
+        <nb-card-body>
+            <div class="journey-details">
+                <div class="locations">
+                    <p>{{ journey.departureTime }} | {{ journey.origin }}</p>
+                    <p>{{ journey.journeyDate }}</p>
+                </div>
+                <div class="journey-time">
+                    <div class="line"></div>
+                    <span class="journey-time-value">{{ journey.duration }}</span>
+                    <div class="line"></div>
+                </div>
+                <div class="locations">
+                    <p>{{ journey.arrivalTime }} | {{ journey.destination }}</p>
+                    <p>{{ journey.arrivalDate }}</p>
+                </div>
+            </div>
+        </nb-card-body>
+        <nb-card-footer>
+            <div class="journey-footer">
+                <div class="journey-status">
+                    <span class="journey-status-label">STATUS: </span>
+                    <span
+                        [ngClass]="{'journey-status-value': true, 'booked': journey.ticketStatus === 'BOOKED', 'cancelled': journey.ticketStatus === 'CANCELLED'}">
+                        {{ journey.ticketStatus }}
+                    </span>
+                </div>
+                <div class="actionButtons">
+                    <button status="primary" (click)="viewTicket(journey.ticketNo)" nbButton outline
+                        size="small"><nb-icon icon="eye"></nb-icon></button>
+                    <button status="warning"
+                        [disabled]="journey.ticketStatus === 'CANCELLED' || filterLapsedBookings(journey.ticketNo)"
+                        (click)="modifyTicket(journey.ticketNo)" nbButton outline size="small"><nb-icon
+                            icon="edit"></nb-icon></button>
+
+                    <button status="danger"
+                        [disabled]="journey.ticketStatus === 'CANCELLED' || filterLapsedBookings(journey.ticketNo)"
+                        (click)="cancelTicket(journey.ticketNo)" nbButton outline size="small"><nb-icon
+                            icon="close"></nb-icon></button>
+                </div>
+            </div>
+        </nb-card-footer>
+    </nb-card>
+</div>

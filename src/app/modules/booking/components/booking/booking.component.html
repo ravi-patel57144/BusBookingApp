@@ -1,0 +1,155 @@
+<nb-layout-column>
+    <div class="booking-form">
+        <h1>India's No. 1 Online Bus Ticket Booking Site</h1>
+
+        <form>
+            <nb-card>
+                <nb-card-body>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="origin">Origin</label>
+                            <input nbInput fullWidth id="origin" type="text" placeholder="Enter origin"
+                                [(ngModel)]="selectedOrigin" name="origin" [nbAutocomplete]="originSearch"
+                                (ngModelChange)="onOriginSelect($event)">
+                            <nb-autocomplete #originSearch>
+                                <nb-option *ngFor="let location of availableLocations" [value]="location">
+                                    {{ location }}
+                                </nb-option>
+                            </nb-autocomplete>
+                        </div>
+
+
+                        <div class="swap-button">
+                            <button nbButton status="info" shape="round" (click)="swapValues()">
+                                <nb-icon icon="swap"></nb-icon>
+                            </button>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="destination">Destination</label>
+                            <input nbInput fullWidth id="destination" type="text" placeholder="Enter destination"
+                                [(ngModel)]="selectedDestination" name="destination" [nbAutocomplete]="destSearch"
+                                (ngModelChange)="onDestinationSelect($event)">
+                            <nb-autocomplete #destSearch>
+                                <nb-option *ngFor="let location of availableLocations" [value]="location">
+                                    {{ location }}
+                                </nb-option>
+                            </nb-autocomplete>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="date">Date of Travel</label>
+                            <input nbInput fullWidth id="date" type="date" [(ngModel)]="booking.date" name="date"
+                                [min]="minDate">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="passengers">Number of Passengers</label>
+                            <input nbInput fullWidth id="passengers" type="number"
+                                placeholder="Enter number of passengers" [(ngModel)]="booking.passengers"
+                                name="passengers">
+                        </div>
+                    </div>
+
+                    <div class="submit-button">
+                        <button nbButton status="primary" fullWidth (click)="searchBus()"><nb-icon
+                                icon="search"></nb-icon>SEARCH BUS</button>
+                    </div>
+                </nb-card-body>
+            </nb-card>
+        </form>
+
+
+        <!-- <nb-card>
+            <nb-card-header>
+                Recent Bookings
+            </nb-card-header>
+
+            <nb-card-body>
+                <div class="recentBooking">
+                    <nb-card>
+                        <nb-card-header class="journey-header">
+                            <div class="journey-title">TPJ ADI SPL (09420)</div>
+                            <div class="journey-pnr">
+                                <span>PNR: 4910778392</span>
+                                <nb-icon icon="email-outline"></nb-icon>
+                            </div>
+                        </nb-card-header>
+
+                        <nb-card-body>
+                            <div class="journey-details">
+                                <p>16:55 | Surat (ST)</p>
+                                <p>Mon, 27 May</p>
+                            </div>
+
+                            <div class="journey-status">
+                                <span class="journey-status-label">STATUS:</span>
+                                <span class="journey-status-value status-approved">TDR APPROVED</span>
+                            </div>
+
+                            <div class="journey-time">
+                                <span class="journey-time-value">01h 38m</span>
+                            </div>
+                        </nb-card-body>
+                    </nb-card>
+
+                    <nb-card>
+                        <nb-card-header class="journey-header">
+                            <div class="journey-title">BDTS UDN SF SPL (09055)</div>
+                            <div class="journey-pnr">
+                                <span>PNR: 8718629138</span>
+                                <nb-icon icon="email-outline"></nb-icon>
+                            </div>
+                        </nb-card-header>
+
+                        <nb-card-body>
+                            <div class="journey-details">
+                                <p>12:32 | Vapi (VAPI)</p>
+                                <p>Mon, 27 May</p>
+                            </div>
+
+                            <div class="journey-status">
+                                <span class="journey-status-label">STATUS:</span>
+                                <span class="journey-status-value status-booked">BOOKED</span>
+                            </div>
+
+                            <div class="journey-time">
+                                <span class="journey-time-value">01h 33m</span>
+                            </div>
+                        </nb-card-body>
+                    </nb-card>
+
+                    <nb-card>
+                        <nb-card-header class="journey-header">
+                            <div class="journey-title">ADI GKP EXP (19489)</div>
+                            <div class="journey-pnr">
+                                <span>PNR: 8518243842</span>
+                                <nb-icon icon="email-outline"></nb-icon>
+                            </div>
+                        </nb-card-header>
+
+                        <nb-card-body>
+                            <div class="journey-details">
+                                <p>09:10 | Ahmedabad Jn (ADI)</p>
+                                <p>Sat, 18 May</p>
+                            </div>
+
+                            <div class="journey-status">
+                                <span class="journey-status-label">STATUS:</span>
+                                <span class="journey-status-value status-booked">BOOKED</span>
+                            </div>
+
+                            <div class="journey-time">
+                                <span class="journey-time-value">29h 15m</span>
+                            </div>
+                        </nb-card-body>
+                    </nb-card>
+                </div>
+            </nb-card-body>
+        </nb-card> -->
+
+
+    </div>
+</nb-layout-column>

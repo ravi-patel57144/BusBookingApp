@@ -1,0 +1,93 @@
+<div *ngIf="tickets.length > 0" id="ticket-card">
+    <nb-card *ngFor="let ticket of tickets" class="ticket-card">
+        <nb-card-header class="header">
+            <div class="pass-type">BUS TICKET</div>
+
+            <div [ngClass]="{
+         'status-green': ticket.ticketStatus === 'BOOKED',
+         'status-red': ticket.ticketStatus !== 'BOOKED'}">
+                {{ ticket.ticketStatus }}</div>
+        </nb-card-header>
+        <nb-card-body class="info-table">
+            <div class="info-left">
+                <div class="info-row">
+                    <div class="info-label">Ticket No</div>
+                    <div class="info-value">{{ ticket.ticketNo }}</div>
+                </div>
+                <div *ngFor="let passenger of ticket.passengerDetails; let i = index">
+                    <div class="info-row">
+                        <!-- <div class="info-label">Passenger Details</div> -->
+                        <span>Passenger {{ i + 1 }}</span>
+                        <div class="info-valuepassenger">
+                            {{ passenger.name }} ({{ passenger.age }}y {{ passenger.gender
+                            }})
+                            {{ passenger.seatNumber }}
+                        </div>
+                    </div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">Payment Method</div>
+                    <div class="info-value">{{ ticket.paymentDetails.method }}</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">Booked At</div>
+                    <div class="info-value">{{ bookedAt }}</div>
+                </div>
+            </div>
+            <div class="info-right">
+                <div class="info-row">
+                    <div class="info-label">Travel Name</div>
+                    <div class="info-value">{{ ticket.travelsName }}</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">Origin</div>
+                    <div class="info-value">{{ ticket.origin }}</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">Destination</div>
+                    <div class="info-value">{{ ticket.destination }}</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">Date of Journey</div>
+                    <div class="info-value">{{ ticket.journeyDate }}</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">Departure Time</div>
+                    <div class="info-value">{{ ticket.departureTime }}</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">Arrival Time</div>
+                    <div class="info-value">{{ ticket.arrivalTime }}</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">Fare</div>
+                    <div class="info-value">{{ ticket.fare }}</div>
+                </div>
+            </div>
+        </nb-card-body>
+        <nb-card-footer class="footer">
+            <div class="footer-text">This ticket is non-refundable and non-transferable.</div>
+        </nb-card-footer>
+    </nb-card>
+    <!-- Print Button -->
+    <div class="info-row printButton">
+        <button nbButton outline status="primary" (click)="printTicket()">Print Ticket</button>
+        <button nbButton outline status="basic" (click)="backToTicketHistory()">Back</button>
+    </div>
+</div>
+<div *ngIf="tickets.length === 0">
+    <nb-card>
+        <nb-card-header class="header">
+            <div class="pass-type">BUS TICKET</div>
+            <div class="warning">WARNING</div>
+        </nb-card-header>
+        <nb-card-body>
+            <div class="info-row">
+                <div class="info-value">No tickets found for ticket number {{ ticketNo }}.</div>
+            </div>
+        </nb-card-body>
+        <nb-card-footer class="footer">
+            <div class="footer-text">Please check the ticket number and try again.</div>
+        </nb-card-footer>
+    </nb-card>
+</div>

@@ -1,0 +1,44 @@
+.booking-form {
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.passenger-details {
+    border: 1px solid #e9ecef;
+    padding: 15px;
+    border-radius: 8px;
+    display: flex;
+}
+
+.passenger-details nb-card-header {
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.passenger-details input,
+.passenger-details nb-select {
+    width: 100%;
+    margin: 10px;
+
+}
+
+button {
+    width: 100%;
+    max-width: 200px;
+    margin: 10px;
+}
+
+.saveButton {
+    display: flex;
+    justify-content: center;
+}

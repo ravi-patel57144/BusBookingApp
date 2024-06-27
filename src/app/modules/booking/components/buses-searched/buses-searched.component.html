@@ -1,0 +1,83 @@
+<nb-layout-column>
+    <div class="search-container">
+        <form class="search-form" (ngSubmit)="onEditSearch()">
+            <nb-form-field appearance="outline">
+                <label for="origin">Origin</label>
+                <input nbInput type="text" placeholder="Origin" [nbAutocomplete]="autoOrigin"
+                    [formControl]="originControl">
+                <nb-autocomplete #autoOrigin>
+                    <nb-option *ngFor="let location of filteredOrigins | async" [value]="location">
+                        {{ location }}
+                    </nb-option>
+                </nb-autocomplete>
+            </nb-form-field>
+
+            <nb-form-field appearance="outline">
+                <label for="destination">Destination</label>
+                <input nbInput type="text" placeholder="Destination" [nbAutocomplete]="autoDestination"
+                    [formControl]="destinationControl">
+                <nb-autocomplete #autoDestination>
+                    <nb-option *ngFor="let location of filteredDestinations | async" [value]="location">
+                        {{ location }}
+                    </nb-option>
+                </nb-autocomplete>
+            </nb-form-field>
+
+            <nb-form-field appearance="outline">
+                <label for="date">Date of Travel</label>
+                <input nbInput type="date" placeholder="Date of Travel" name="date" [(ngModel)]="date">
+            </nb-form-field>
+
+            <nb-form-field appearance="outline">
+                <label for="passengers">No Of Passengers</label>
+                <input nbInput type="number" placeholder="No Of Passengers" name="passengers" [(ngModel)]="passengers">
+            </nb-form-field>
+
+            <button nbButton status="primary" class="edit-search">
+                <nb-icon icon="edit"></nb-icon>Edit Search
+            </button>
+        </form>
+    </div>
+
+    <div class="bus-list">
+        <h3>{{ buses.length }} buses found</h3>
+        <div class="sort-options">
+            <button nbButton status="info" shape="round" (click)="sortByCheapest()">Cheapest</button>
+            <button nbButton status="info" shape="round" (click)="filterRecommended()">Recommended</button>
+            <button nbButton status="info" shape="round" (click)="sortByEarlyDeparture()">Early Departure</button>
+            <button nbButton status="info" shape="round" (click)="sortByLateDeparture()">Late Departure</button>
+        </div>
+        <ng-container *ngIf="buses.length > 0; else noBusesFound">
+            <div class="bus-cards">
+                <nb-card *ngFor="let bus of buses" class="bus-card">
+                    <nb-card-header>
+                        <div class="bus-details">
+                            <h4>{{ bus.travelsName }} ({{ bus.origin }} - {{ bus.destination }})</h4>
+                            <h4 class="text-primary">★{{ bus.rating }}</h4>
+                        </div>
+                    </nb-card-header>
+                    <nb-card-body>
+                        <div class="bus-card-details">
+                            <span>{{ bus.description }}</span>
+                            <span>Fare: ₹{{ bus.fare }}</span>
+                        </div>
+                        <div class="bus-card-details">
+                            <span>Departure At: {{ bus.departureTime }}</span>
+                            <span>Reaches At: {{ bus.arrivalTime }}</span>
+                        </div>
+                        <div class="bus-card-details">
+                            <span class="seatsLeft">{{ bus.seats }} seats left</span>
+                            <button nbButton status="success" (click)="showSeatSelection(bus)">Select
+                                Seat</button>
+                        </div>
+                    </nb-card-body>
+                </nb-card>
+            </div>
+        </ng-container>
+        <ng-template #noBusesFound>
+            <h4 class="no-bus">No buses available for the route.</h4>
+        </ng-template>
+    </div>
+
+
+</nb-layout-column>

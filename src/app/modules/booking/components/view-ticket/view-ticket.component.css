@@ -1,0 +1,119 @@
+.ticket-card {
+    max-width: 900px;
+    margin: 50px auto;
+    border-radius: 10px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* .success {
+    font-size: 24px;
+    font-weight: bold;
+    color: green;
+} */
+
+.pass-type {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.info-table {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid #ddd;
+    padding-top: 20px;
+    margin-top: 20px;
+}
+
+.info-left,
+.info-right {
+    flex: 1;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.info-left {
+    background-color: #f0f0f0;
+    margin-right: 10px;
+}
+
+.info-right {
+    background-color: #ffcc00;
+    margin-left: 10px;
+}
+
+.info-row {
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.info-label {
+    font-weight: bold;
+    color: #333;
+    flex-basis: 40%;
+}
+
+.info-value {
+    font-size: 18px;
+    flex-basis: 60%;
+}
+
+.footer {
+    text-align: center;
+    margin-top: 20px;
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+}
+
+.footer-text {
+    font-size: 14px;
+    color: #777;
+}
+
+span {
+    font-size: 14px;
+    color: #000;
+}
+
+.info-valuepassenger {
+    flex-basis: 60%;
+    color: #777;
+}
+
+.printButton {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.printButton button {
+    margin-bottom: 5px;
+}
+
+@media print {
+    @page {
+        size: landscape;
+    }
+
+    .printButton {
+        display: none;
+    }
+}
+
+
+.status-green {
+    color: green;
+}
+
+.status-red {
+    color: red;
+}

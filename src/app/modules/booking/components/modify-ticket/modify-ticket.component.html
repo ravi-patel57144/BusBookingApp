@@ -1,0 +1,30 @@
+<div class="booking-form">
+    <nb-card *ngIf="booking">
+        <nb-card-body>
+            <form class="form-container">
+                <nb-card-header>Ticket No {{ booking.ticketNo }}</nb-card-header>
+                <div>
+                    <nb-card-header>Journey Date:</nb-card-header>
+                    <input nbInput type="date" [(ngModel)]="booking.journeyDate" name="journeyDate">
+                </div>
+                <div *ngFor="let passenger of booking.passengerDetails; let i = index">
+                    <nb-card-header>Passenger {{ i + 1 }}</nb-card-header>
+                    <div class="passenger-details">
+                        <input nbInput [(ngModel)]="passenger.name" placeholder="Name" name="passengerName{{i}}">
+                        <input nbInput type="number" [(ngModel)]="passenger.age" placeholder="Age"
+                            name="passengerAge{{i}}">
+                        <nb-select [(ngModel)]="passenger.gender" placeholder="Gender" name="passengerGender{{i}}">
+                            <nb-option value="Male">Male</nb-option>
+                            <nb-option value="Female">Female</nb-option>
+                            <nb-option value="Other">Other</nb-option>
+                        </nb-select>
+                    </div>
+                </div>
+            </form>
+            <div class="saveButton">
+                <button nbButton type="submit" (click)="saveChanges()" outline status="warning">Save Changes</button>
+                <button nbButton (click)="backToTicketHistory()" outline status="danger"> Cancel</button>
+            </div>
+        </nb-card-body>
+    </nb-card>
+</div>

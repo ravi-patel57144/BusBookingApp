@@ -1,0 +1,164 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+}
+
+.journey {
+    width: auto;
+    margin: 10px;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.journey-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.journey-title {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.journey-ticket {
+    display: flex;
+    align-items: center;
+}
+
+.journey-ticket nb-icon {
+    margin-left: 5px;
+}
+
+.journey-details {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.locations {
+    text-align: center;
+    flex: 1;
+}
+
+.line {
+    height: 2px;
+    width: 200px;
+    background-color: #888;
+    margin: 0 10px;
+}
+
+.journey-status {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+}
+
+.journey-status-label {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.journey-status-value {
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: white;
+}
+
+.journey-status-value.booked {
+    color: #4CAF50;
+    font-weight: 800;
+}
+
+.journey-status-value.cancelled {
+    color: #f44336;
+    font-weight: 800;
+}
+
+.journey-time {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex: 1;
+}
+
+.journey-time-value {
+    font-size: 14px;
+    color: #888;
+}
+
+.sort-options {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+}
+
+.sort-options button {
+    margin-left: 10px;
+}
+
+.actionButtons {
+    display: flex;
+    justify-content: flex-end;
+    /* margin-bottom: 10px; */
+}
+
+button {
+    margin: 5px;
+}
+
+@media (max-width: 768px) {
+    .journey-details {
+        flex-direction: column;
+    }
+
+    .line {
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    .journey-status {
+        align-items: space-between;
+    }
+
+    .journey-status-value {
+        margin-top: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        margin: 10px;
+    }
+
+    .journey {
+        padding: 10px;
+    }
+
+    .journey-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .journey-title {
+        font-size: 16px;
+    }
+
+    .journey-ticket {
+        margin-top: 10px;
+    }
+
+    .journey-status {
+        padding: 5px;
+    }
+}

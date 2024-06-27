@@ -1,0 +1,147 @@
+.booking-form {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+    background-image: url(../../../../../assets/images/bussvg.svg);
+    height: 90%;
+
+    h1 {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    form {
+        nb-card {
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+            .form-row {
+                display: flex;
+                justify-content: space-between;
+
+                .form-group {
+                    flex: 1;
+                    margin-bottom: 20px;
+                    display: flex;
+                    flex-direction: column;
+
+                    label {
+                        font-weight: bold;
+                        margin-bottom: 5px;
+                        text-align: left;
+                    }
+
+                    input {
+                        font-size: 16px;
+                        padding: 10px;
+                        margin: 10px;
+                        border: 1px solid #ccc;
+                        border-radius: 4px;
+                        transition: border-color 0.3s ease;
+                        width: 90%;
+
+                        &:focus {
+                            outline: none;
+                            border-color: #4ca1af;
+                        }
+                    }
+                }
+            }
+
+            .submit-button {
+                margin-top: 20px;
+
+                button {
+                    font-size: 18px;
+                    font-weight: bold;
+                    padding: 12px 20px;
+                }
+            }
+
+            .swap-button {
+                display: flex;
+                align-items: center;
+                margin-right: 50px;
+            }
+
+            .swap-button button {
+                font-size: 16px;
+                padding: 8px;
+            }
+
+            .swap-button nb-icon {
+                font-size: 20px;
+            }
+        }
+    }
+}
+
+
+
+
+
+/* Recent Booking */
+.status-approved {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.status-booked {
+    background-color: #f44336;
+    color: white;
+}
+
+.journey-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.journey-title {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.journey-pnr {
+    display: flex;
+    align-items: center;
+}
+
+.journey-pnr nb-icon {
+    margin-left: 5px;
+}
+
+.journey-details {
+    margin-bottom: 10px;
+}
+
+.journey-status {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    background-color: #f0f0f0;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.journey-status-label {
+    font-weight: bold;
+}
+
+.journey-time {
+    display: flex;
+    justify-content: center;
+}
+
+.journey-time-value {
+    font-size: 14px;
+    color: #888;
+}
+
+.recentBooking {
+    display: flex;
+    justify-content: space-around;
+}
