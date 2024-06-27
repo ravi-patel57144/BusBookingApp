@@ -14,6 +14,7 @@ import { SeatSelectionComponent } from './components/seat-selection/seat-selecti
 import { ViewTicketComponent } from './components/view-ticket/view-ticket.component';
 import { TicketHistoryComponent } from './components/ticket-history/ticket-history.component';
 import { ModifyTicketComponent } from './components/modify-ticket/modify-ticket.component';
+import { NbDateFnsDateModule } from '@nebular/date-fns';
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import { ModifyTicketComponent } from './components/modify-ticket/modify-ticket.
     NbAlertModule,
     NbSelectModule,
     NbRadioModule,
-    NbBadgeModule
+    NbBadgeModule,
+    NbDateFnsDateModule
   ]
 })
 export class BookingModule { }

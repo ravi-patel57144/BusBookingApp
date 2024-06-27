@@ -9,15 +9,13 @@
                         <div class="form-group">
                             <label for="origin">Origin</label>
                             <input nbInput fullWidth id="origin" type="text" placeholder="Enter origin"
-                                [(ngModel)]="selectedOrigin" name="origin" [nbAutocomplete]="originSearch"
-                                (ngModelChange)="onOriginSelect($event)">
-                            <nb-autocomplete #originSearch>
-                                <nb-option *ngFor="let location of availableLocations" [value]="location">
+                                [formControl]="originControl" name="origin" [nbAutocomplete]="autoOrigin">
+                            <nb-autocomplete #autoOrigin>
+                                <nb-option *ngFor="let location of filteredOrigins | async" [value]="location">
                                     {{ location }}
                                 </nb-option>
                             </nb-autocomplete>
                         </div>
-
 
                         <div class="swap-button">
                             <button nbButton status="info" shape="round" (click)="swapValues()">
@@ -28,10 +26,9 @@
                         <div class="form-group">
                             <label for="destination">Destination</label>
                             <input nbInput fullWidth id="destination" type="text" placeholder="Enter destination"
-                                [(ngModel)]="selectedDestination" name="destination" [nbAutocomplete]="destSearch"
-                                (ngModelChange)="onDestinationSelect($event)">
+                                [formControl]="destinationControl" name="destination" [nbAutocomplete]="destSearch">
                             <nb-autocomplete #destSearch>
-                                <nb-option *ngFor="let location of availableLocations" [value]="location">
+                                <nb-option *ngFor="let location of filteredDestinations | async" [value]="location">
                                     {{ location }}
                                 </nb-option>
                             </nb-autocomplete>
@@ -41,8 +38,9 @@
                     <div class="form-row">
                         <div class="form-group">
                             <label for="date">Date of Travel</label>
-                            <input nbInput fullWidth id="date" type="date" [(ngModel)]="booking.date" name="date"
-                                [min]="minDate">
+                            <input nbInput fullWidth id="date" placeholder="DD-MM-YYYY" [nbDatepicker]="datepicker" [(ngModel)]="booking.date"
+                                name="date">
+                            <nb-datepicker #datepicker format="dd-MM-yyyy" [min]="min"></nb-datepicker>
                         </div>
 
                         <div class="form-group">
@@ -54,12 +52,14 @@
                     </div>
 
                     <div class="submit-button">
-                        <button nbButton status="primary" fullWidth (click)="searchBus()"><nb-icon
-                                icon="search"></nb-icon>SEARCH BUS</button>
+                        <button nbButton status="primary" fullWidth (click)="searchBus()">
+                            <nb-icon icon="search"></nb-icon>SEARCH BUS
+                        </button>
                     </div>
                 </nb-card-body>
             </nb-card>
         </form>
+
 
 
         <!-- <nb-card>

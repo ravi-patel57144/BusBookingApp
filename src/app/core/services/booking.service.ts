@@ -95,42 +95,79 @@ export class BookingService {
 
   private bookings: any[] = [
     {
-      ticketNo: 'TKT901', bookedById: 1, busID: 21, travelsName: 'Super Express', description: 'AC Sleeper', departureTime: '08:00', origin: 'Ahmedabad', journeyDate: '2024-01-01', duration: '6h', arrivalTime: '14:00', destination: 'Mumbai', arrivalDate: '2023-01-01', ticketStatus: 'BOOKED', createdOn: '', modifiedOn: '', fare: 2000, paymentDetails
-        : { method: 'cash' },
+      ticketNo: 'TKT901', bookedById: 1, busID: 21, travelsName: 'Super Express', description: 'AC Sleeper', departureTime: '08:00', origin: 'Ahmedabad', journeyDate: '2024-01-01', duration: '6h', arrivalTime: '14:00', destination: 'Mumbai', arrivalDate: '2024-01-01', ticketStatus: 'BOOKED', createdOn: '', modifiedOn: '', fare: 2000, paymentDetails: { method: 'cash' },
       passengerDetails: [
         { name: 'John', age: 18, gender: 'Male', seatNumber: 'U15' },
         { name: 'Amanda', age: 18, gender: 'Female', seatNumber: 'U16' }
       ]
     },
     {
-      ticketNo: 'TKT902', bookedById: 1, busID: 21, travelsName: 'City Connect', description: 'AC Sleeper', departureTime: '09:00', origin: 'Surat', journeyDate: '2024-07-01', duration: '6h', arrivalTime: '15:00', destination: 'Mumbai', arrivalDate: '2023-02-01', ticketStatus: 'CANCELLED', createdOn: '', modifiedOn: '', fare: 2000, paymentDetails
-        : { method: 'cash' },
+      ticketNo: 'TKT902', bookedById: 1, busID: 21, travelsName: 'City Connect', description: 'AC Sleeper', departureTime: '09:00', origin: 'Surat', journeyDate: '2024-07-01', duration: '6h', arrivalTime: '15:00', destination: 'Mumbai', arrivalDate: '2024-07-01', ticketStatus: 'CANCELLED', createdOn: '', modifiedOn: '', fare: 2000, paymentDetails: { method: 'cash' },
       passengerDetails: [
         { name: 'Kai', age: 18, gender: 'Male', seatNumber: 'U17' }
       ]
     },
     {
-      ticketNo: 'TKT903', bookedById: 1, busID: 40, travelsName: 'Greenline Travels', description: 'AC Sleeper', departureTime: '13:00', origin: 'Mumbai', journeyDate: '2024-07-26', duration: '6h', arrivalTime: '19:00', destination: 'Rajkot', arrivalDate: '2023-01-15', ticketStatus: 'BOOKED', createdOn: '', modifiedOn: '', fare: 2000, paymentDetails
-        : { method: 'cash' },
+      ticketNo: 'TKT903', bookedById: 1, busID: 40, travelsName: 'Greenline Travels', description: 'AC Sleeper', departureTime: '13:00', origin: 'Mumbai', journeyDate: '2024-07-26', duration: '6h', arrivalTime: '19:00', destination: 'Rajkot', arrivalDate: '2024-07-26', ticketStatus: 'BOOKED', createdOn: '', modifiedOn: '', fare: 2000, paymentDetails: { method: 'cash' },
       passengerDetails: [
         { name: 'Maze', age: 18, gender: 'Female', seatNumber: 'U18' }
       ]
     },
     {
-      ticketNo: 'TKT904', bookedById: 2, busID: 21, travelsName: 'Morning Star', description: 'AC Sleeper', departureTime: '07:30', origin: 'Ahmedabad', journeyDate: '2023-03-01', duration: '3h', arrivalTime: '10:30', destination: 'Baroda', arrivalDate: '2023-03-01', ticketStatus: 'CANCELLED', createdOn: '', modifiedOn: '', fare: 2000, paymentDetails
-        : { method: 'cash' },
+      ticketNo: 'TKT904', bookedById: 1, busID: 21, travelsName: 'Morning Star', description: 'AC Sleeper', departureTime: '07:30', origin: 'Ahmedabad', journeyDate: '2023-03-01', duration: '3h', arrivalTime: '10:30', destination: 'Baroda', arrivalDate: '2023-03-01', ticketStatus: 'CANCELLED', createdOn: '', modifiedOn: '', fare: 2000, paymentDetails: { method: 'cash' },
       passengerDetails: [
         { name: 'Lucifer', age: 18, gender: 'Male', seatNumber: 'U19' }
+      ]
+    },
+    {
+      ticketNo: 'TKT905', bookedById: 1, busID: 25, travelsName: 'City Connect', description: 'AC Semi-Sleeper 2+1', departureTime: '09:00', origin: 'Bangalore', journeyDate: '2024-08-10', duration: '6h', arrivalTime: '15:00', destination: 'Hyderabad', arrivalDate: '2024-08-10', ticketStatus: 'BOOKED', createdOn: '', modifiedOn: '', fare: 800, paymentDetails: { method: 'card' },
+      passengerDetails: [
+        { name: 'Alice', age: 25, gender: 'Female', seatNumber: 'L10' }
+      ]
+    },
+    {
+      ticketNo: 'TKT906', bookedById: 1, busID: 14, travelsName: 'Greenline Travels', description: 'Non-AC Seater', departureTime: '12:00', origin: 'Rajkot', journeyDate: '2024-08-15', duration: '4h', arrivalTime: '16:00', destination: 'Ahmedabad', arrivalDate: '2024-08-15', ticketStatus: 'BOOKED', createdOn: '', modifiedOn: '', fare: 320, paymentDetails: { method: 'cash' },
+      passengerDetails: [
+        { name: 'Bob', age: 30, gender: 'Male', seatNumber: 'U20' },
+        { name: 'Charlie', age: 28, gender: 'Female', seatNumber: 'U21' }
+      ]
+    },
+    {
+      ticketNo: 'TKT907', bookedById: 1, busID: 19, travelsName: 'Golden Travels', description: 'AC Seater 2+2', departureTime: '09:00', origin: 'Baroda', journeyDate: '2024-09-05', duration: '3h', arrivalTime: '12:00', destination: 'Rajkot', arrivalDate: '2024-09-05', ticketStatus: 'BOOKED', createdOn: '', modifiedOn: '', fare: 370, paymentDetails: { method: 'upi' },
+      passengerDetails: [
+        { name: 'Dave', age: 22, gender: 'Male', seatNumber: 'U22' },
+        { name: 'Eve', age: 21, gender: 'Female', seatNumber: 'U23' }
+      ]
+    },
+    {
+      ticketNo: 'TKT908', bookedById: 1, busID: 30, travelsName: 'Speedways', description: 'AC Semi-Sleeper 2+1', departureTime: '13:00', origin: 'Delhi', journeyDate: '2024-09-10', duration: '6h', arrivalTime: '19:00', destination: 'Kolkata', arrivalDate: '2024-09-10', ticketStatus: 'CANCELLED', createdOn: '', modifiedOn: '', fare: 700, paymentDetails: { method: 'card' },
+      passengerDetails: [
+        { name: 'Frank', age: 35, gender: 'Male', seatNumber: 'L11' }
       ]
     }
   ];
 
 
 
+
+
   constructor() {
-    const localStorageBookings = JSON.parse(localStorage.getItem('bookings') || '[]') as any[];
-    if (localStorageBookings.length === 0) {
-      localStorage.setItem('bookings', JSON.stringify(this.bookings));
+    if (this.isLocalStorageAvailable()) {
+      const localStorageBookings = JSON.parse(localStorage.getItem('bookings') || '[]') as any[];
+      if (localStorageBookings.length === 0) {
+        localStorage.setItem('bookings', JSON.stringify(this.bookings));
+      }
+    }
+  }
+
+  isLocalStorageAvailable(): boolean {
+    try {
+      const test = 'test';
+      localStorage.setItem(test, test);
+      localStorage.removeItem(test);
+      return true;
+    } catch (e) {
+      return false;
     }
   }
 
@@ -154,6 +191,8 @@ export class BookingService {
   }
 
   bookTicket(bookingDetails: any): boolean {
+    if (!this.isLocalStorageAvailable()) return false;
+
     try {
       const bookings = JSON.parse(localStorage.getItem('bookings') || '[]');
       return true;
@@ -163,14 +202,15 @@ export class BookingService {
     }
   }
 
-
   getBookings(userId: number): Observable<any[]> {
+    if (!this.isLocalStorageAvailable()) return of([]);
+
     try {
       const localStorageBookings = JSON.parse(localStorage.getItem('bookings') || '[]') as any[];
       const userBookings = localStorageBookings.filter(booking => booking.bookedById === userId);
       return of(userBookings);
     } catch (error) {
-      console.error('Error fetching bookings:', error);
+      console.error('Error retrieving bookings:', error);
       return of([]);
     }
   }

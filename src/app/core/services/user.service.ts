@@ -6,11 +6,27 @@ import { Observable, of } from 'rxjs';
 })
 export class UserService {
 
-  constructor() { }
+  constructor() {
+    if (this.isLocalStorageAvailable()) {
+      const localStorageBookings = JSON.parse(localStorage.getItem('users') || '[]') as any[];
+      if (localStorageBookings.length === 0) {
+        localStorage.setItem('users', JSON.stringify(this.users));
+      }
+    }
+  }
+
+  private users: any[] = [
+    { id: 1, name: 'Demo User', email: 'demo@example.com', password: 'Demo@123' }
+  ];
 
   register(userDetails: any): Observable<boolean> {
     return new Observable<boolean>(observer => {
       setTimeout(() => {
+        if (!this.isLocalStorageAvailable()) {
+          observer.error('localStorage is not available');
+          return;
+        }
+
         const users = this.getUsersFromLocalStorage();
 
         const existingUser = users.find((u: any) => u.email === userDetails.email);
@@ -41,6 +57,10 @@ export class UserService {
   }
 
   login(email: string, password: string): Observable<boolean> {
+    if (!this.isLocalStorageAvailable()) {
+      return of(false);
+    }
+
     const users = this.getUsersFromLocalStorage();
     const user = users.find((u: any) => u.email === email && u.password === password && !u.isDeleted);
 
@@ -53,6 +73,10 @@ export class UserService {
   }
 
   logout(): Observable<boolean> {
+    if (!this.isLocalStorageAvailable()) {
+      return of(false);
+    }
+
     try {
       localStorage.removeItem('currentUser');
       return of(true);
@@ -63,16 +87,20 @@ export class UserService {
   }
 
   getCurrentUser(): any {
+    if (!this.isLocalStorageAvailable()) {
+      return {};
+    }
+
     const currentUser = localStorage.getItem('currentUser');
     return JSON.parse(currentUser || '{}');
   }
 
   isLoggedIn(): boolean {
-    return !!localStorage.getItem('currentUser');
+    return this.isLocalStorageAvailable() && !!localStorage.getItem('currentUser');
   }
 
   private getUsersFromLocalStorage(): any[] {
-    if (typeof localStorage !== 'undefined') {
+    if (this.isLocalStorageAvailable()) {
       return JSON.parse(localStorage.getItem('users') || '[]');
     } else {
       console.warn('localStorage is not available. Returning empty array.');
@@ -81,7 +109,7 @@ export class UserService {
   }
 
   private saveUsersToLocalStorage(users: any[]): void {
-    if (typeof localStorage !== 'undefined') {
+    if (this.isLocalStorageAvailable()) {
       localStorage.setItem('users', JSON.stringify(users));
     } else {
       console.warn('localStorage is not available. Cannot save users.');
@@ -90,6 +118,11 @@ export class UserService {
 
   updateUser(userId: number, updatedDetails: any): Observable<boolean> {
     return new Observable<boolean>(observer => {
+      if (!this.isLocalStorageAvailable()) {
+        observer.error('localStorage is not available');
+        return;
+      }
+
       const users = this.getUsersFromLocalStorage();
       const userIndex = users.findIndex((u: any) => u.id === userId);
       if (userIndex > -1) {
@@ -109,6 +142,11 @@ export class UserService {
 
   deleteUser(userId: number): Observable<boolean> {
     return new Observable<boolean>(observer => {
+      if (!this.isLocalStorageAvailable()) {
+        observer.error('localStorage is not available');
+        return;
+      }
+
       const users = this.getUsersFromLocalStorage();
       const userIndex = users.findIndex((u: any) => u.id === userId);
       if (userIndex > -1) {
@@ -121,5 +159,16 @@ export class UserService {
       }
       observer.complete();
     });
+  }
+
+  private isLocalStorageAvailable(): boolean {
+    try {
+      const test = 'test';
+      localStorage.setItem(test, test);
+      localStorage.removeItem(test);
+      return true;
+    } catch (e) {
+      return false;
+    }
   }
 }
