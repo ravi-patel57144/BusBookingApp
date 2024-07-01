@@ -107,10 +107,14 @@
     margin-left: 10px;
 }
 
+.sort-options button.selected {
+    background-color: #007bff;
+    color: white;
+}
+
 .actionButtons {
     display: flex;
     justify-content: flex-end;
-    /* margin-bottom: 10px; */
 }
 
 button {

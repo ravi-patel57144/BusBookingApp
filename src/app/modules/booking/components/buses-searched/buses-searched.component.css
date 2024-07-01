@@ -53,6 +53,11 @@ body {
     margin-left: 10px;
 }
 
+.sort-options button.selected {
+    background-color: #007bff !important;
+    color: white !important;
+}
+
 .bus-card {
     background-color: #fff;
     border: 1px solid #ddd;

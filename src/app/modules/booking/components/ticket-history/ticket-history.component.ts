@@ -13,6 +13,7 @@ export class TicketHistoryComponent implements OnInit {
   loggedInUser: any;
   journeys: any[] = [];
   filteredJourneys: any[] = [];
+  selectedSortOption: string = 'all';
 
   constructor(
     private bookingService: BookingService,
@@ -61,16 +62,6 @@ export class TicketHistoryComponent implements OnInit {
       const currentDate = new Date();
       const journeyDateObj = new Date(booking.journeyDate);
 
-      // if (booking.ticketStatus === 'CANCELLED') {
-      //   this.toastrService.warning(`Ticket ${ticketNo} is already cancelled.`);
-      //   return;
-      // }
-
-      // if (journeyDateObj < currentDate) {
-      //   this.toastrService.warning(`Journey for ${ticketNo} is already completed.`);
-      //   return;
-      // }
-
       if (confirm('Are you sure you want to cancel the ticket?')) {
         bookings[bookingIndex].ticketStatus = 'CANCELLED';
         localStorage.setItem('bookings', JSON.stringify(bookings));
@@ -96,13 +87,13 @@ export class TicketHistoryComponent implements OnInit {
     return journeyDate <= currentDate;
   }
 
-
-
   allJourney(): void {
+    this.selectedSortOption = 'all';
     this.filteredJourneys = [...this.journeys].reverse();
   }
 
   upcomingJourney(): void {
+    this.selectedSortOption = 'upcoming';
     const currentDate = new Date();
     this.filteredJourneys = this.journeys.filter(journey => {
       const journeyDate = new Date(journey.journeyDate);
@@ -110,8 +101,8 @@ export class TicketHistoryComponent implements OnInit {
     }).reverse();
   }
 
-
   pastJourney(): void {
+    this.selectedSortOption = 'past';
     const currentDate = new Date();
     this.filteredJourneys = this.journeys.filter(journey => {
       const journeyDate = new Date(journey.journeyDate);
@@ -120,6 +111,7 @@ export class TicketHistoryComponent implements OnInit {
   }
 
   cancelledJourney(): void {
+    this.selectedSortOption = 'cancelled';
     this.filteredJourneys = this.journeys.filter(journey => journey.ticketStatus === 'CANCELLED').reverse();
   }
 }

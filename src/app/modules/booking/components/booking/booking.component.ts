@@ -6,6 +6,7 @@ import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
 import { DatePipe } from '@angular/common';
+import { UserService } from '../../../../core/services/user.service';
 
 interface Booking {
   origin: string;
@@ -36,6 +37,10 @@ export class BookingComponent implements OnInit {
   filteredOrigins!: Observable<string[]>;
   filteredDestinations!: Observable<string[]>;
 
+  loggedInUser: any;
+  journeys: any[] = [];
+  filteredJourneys: any[] = [];
+
   min: Date;
 
   constructor(
@@ -43,6 +48,7 @@ export class BookingComponent implements OnInit {
     private toastrService: NbToastrService,
     private router: Router,
     private datePipe: DatePipe,
+    private userService: UserService,
     protected dateService: NbDateService<Date>
   ) {
     this.min = this.dateService.addDay(this.dateService.today(), -0);
@@ -52,20 +58,36 @@ export class BookingComponent implements OnInit {
     this.availableLocations = this.bookingService.getLocations();
 
     this.filteredOrigins = this.originControl.valueChanges.pipe(
-        startWith(''),
-        map(value => this._filterLocations(value!))
-      );
+      startWith(''),
+      map(value => this._filterLocations(value!))
+    );
 
-      this.filteredDestinations = this.destinationControl.valueChanges.pipe(
-        startWith(''),
-        map(value => this._filterLocations(value!))
-      );
+    this.filteredDestinations = this.destinationControl.valueChanges.pipe(
+      startWith(''),
+      map(value => this._filterLocations(value!))
+    );
+
+    this.loggedInUser = this.userService.getCurrentUser();
+    this.loadTicketHistory();
   }
 
   private _filterLocations(value: string): string[] {
     const filterValue = value.toLowerCase();
     return this.availableLocations.filter(location =>
       location.toLowerCase().includes(filterValue)
+    );
+  }
+
+  loadTicketHistory(): void {
+    this.bookingService.getBookings(this.loggedInUser.id).subscribe(
+      (data: any) => {
+        this.journeys = data;
+        this.filteredJourneys = [...this.journeys].reverse().slice(0, 3);
+        console.log('Booking history data:', this.journeys);
+      },
+      (error: any) => {
+        this.toastrService.danger('Failed to load ticket history', 'Error');
+      }
     );
   }
 
@@ -138,5 +160,9 @@ export class BookingComponent implements OnInit {
     this.originControl.setValue('');
     this.destinationControl.setValue('');
     this.availableLocations = this.bookingService.getLocations();
+  }
+
+  viewTicket(ticketNo: string): void {
+    this.router.navigate(['/view-ticket'], { queryParams: { ticketNo: ticketNo } });
   }
 }

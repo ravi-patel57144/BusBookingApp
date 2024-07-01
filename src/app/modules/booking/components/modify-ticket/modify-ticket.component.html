@@ -3,10 +3,11 @@
         <nb-card-body>
             <form class="form-container">
                 <nb-card-header>Ticket No {{ booking.ticketNo }}</nb-card-header>
-                <div>
+                <span>Note: Due to some limitations, you are only allowed to change the passenger details.</span>
+                <!-- <div>
                     <nb-card-header>Journey Date:</nb-card-header>
                     <input nbInput type="date" [(ngModel)]="booking.journeyDate" name="journeyDate">
-                </div>
+                </div> -->
                 <div *ngFor="let passenger of booking.passengerDetails; let i = index">
                     <nb-card-header>Passenger {{ i + 1 }}</nb-card-header>
                     <div class="passenger-details">

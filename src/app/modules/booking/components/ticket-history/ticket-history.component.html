@@ -1,9 +1,13 @@
 <div class="container">
     <div class="sort-options">
-        <button nbButton status="info" shape="round" (click)="allJourney()">All</button>
-        <button nbButton status="info" shape="round" (click)="upcomingJourney()">Upcoming Journey</button>
-        <button nbButton status="info" shape="round" (click)="pastJourney()">Past Journey</button>
-        <button nbButton status="info" shape="round" (click)="cancelledJourney()">Cancelled Journey</button>
+        <button nbButton status="info" shape="round" (click)="allJourney()"
+            [ngClass]="{'selected': selectedSortOption === 'all'}">All</button>
+        <button nbButton status="info" shape="round" (click)="upcomingJourney()"
+            [ngClass]="{'selected': selectedSortOption === 'upcoming'}">Upcoming Journey</button>
+        <button nbButton status="info" shape="round" (click)="pastJourney()"
+            [ngClass]="{'selected': selectedSortOption === 'past'}">Past Journey</button>
+        <button nbButton status="info" shape="round" (click)="cancelledJourney()"
+            [ngClass]="{'selected': selectedSortOption === 'cancelled'}">Cancelled Journey</button>
     </div>
     <nb-card class="journey" *ngFor="let journey of filteredJourneys">
         <nb-card-header>
@@ -48,7 +52,6 @@
                         [disabled]="journey.ticketStatus === 'CANCELLED' || filterLapsedBookings(journey.ticketNo)"
                         (click)="modifyTicket(journey.ticketNo)" nbButton outline size="small"><nb-icon
                             icon="edit"></nb-icon></button>
-
                     <button status="danger"
                         [disabled]="journey.ticketStatus === 'CANCELLED' || filterLapsedBookings(journey.ticketNo)"
                         (click)="cancelTicket(journey.ticketNo)" nbButton outline size="small"><nb-icon

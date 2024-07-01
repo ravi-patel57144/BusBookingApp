@@ -28,6 +28,8 @@ export class BusesSearchedComponent implements OnInit {
   filteredDestinations!: Observable<string[]>;
   passengerDetails: Passenger[] = [];
 
+  selectedSortOption: string = 'reccomended';
+
   constructor(
     private bookingService: BookingService,
     private route: ActivatedRoute,
@@ -133,11 +135,13 @@ export class BusesSearchedComponent implements OnInit {
   }
 
   sortByCheapest(): void {
+    this.selectedSortOption = 'cheapest';
     this.searchBuses();
     this.buses.sort((a, b) => a.fare - b.fare);
   }
 
   sortByEarlyDeparture(): void {
+    this.selectedSortOption = 'earlyDeparture';
     this.searchBuses();
     this.buses.sort((a, b) => {
       const timeA = new Date(`01/01/2021 ${a.departureTime}`);
@@ -147,6 +151,7 @@ export class BusesSearchedComponent implements OnInit {
   }
 
   sortByLateDeparture(): void {
+    this.selectedSortOption = 'lateDeparture';
     this.searchBuses();
     this.buses.sort((a, b) => {
       const timeA = new Date(`01/01/2021 ${a.departureTime}`);
@@ -156,6 +161,7 @@ export class BusesSearchedComponent implements OnInit {
   }
 
   filterRecommended(): void {
+    this.selectedSortOption = 'recommended';
     this.searchBuses();
 
     let maxFare = Math.max(...this.buses.map(bus => bus.fare));

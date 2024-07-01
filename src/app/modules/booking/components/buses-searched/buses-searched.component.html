@@ -42,10 +42,14 @@
     <div class="bus-list">
         <h3>{{ buses.length }} buses found</h3>
         <div class="sort-options">
-            <button nbButton status="info" shape="round" (click)="sortByCheapest()">Cheapest</button>
-            <button nbButton status="info" shape="round" (click)="filterRecommended()">Recommended</button>
-            <button nbButton status="info" shape="round" (click)="sortByEarlyDeparture()">Early Departure</button>
-            <button nbButton status="info" shape="round" (click)="sortByLateDeparture()">Late Departure</button>
+            <button nbButton status="info" shape="round" (click)="filterRecommended()"
+                [ngClass]="{'selected': selectedSortOption === 'recommended'}">Recommended</button>
+            <button nbButton status="info" shape="round" (click)="sortByCheapest()"
+                [ngClass]="{'selected': selectedSortOption === 'cheapest'}">Cheapest</button>
+            <button nbButton status="info" shape="round" (click)="sortByEarlyDeparture()"
+                [ngClass]="{'selected': selectedSortOption === 'earlyDeparture'}">Early Departure</button>
+            <button nbButton status="info" shape="round" (click)="sortByLateDeparture()"
+                [ngClass]="{'selected': selectedSortOption === 'lateDeparture'}">Late Departure</button>
         </div>
         <ng-container *ngIf="buses.length > 0; else noBusesFound">
             <div class="bus-cards">

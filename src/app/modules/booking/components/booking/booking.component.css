@@ -19,10 +19,12 @@
 
             .form-row {
                 display: flex;
+                flex-wrap: wrap;
                 justify-content: space-between;
 
                 .form-group {
                     flex: 1;
+                    min-width: 200px;
                     margin-bottom: 20px;
                     display: flex;
                     flex-direction: column;
@@ -78,19 +80,21 @@
     }
 }
 
-
-
-
-
 /* Recent Booking */
-.status-approved {
-    background-color: #4CAF50;
+.journey-status-value {
+    padding: 5px 10px;
+    border-radius: 5px;
     color: white;
 }
 
-.status-booked {
-    background-color: #f44336;
-    color: white;
+.journey-status-value.booked {
+    color: #4CAF50;
+    font-weight: 800;
+}
+
+.journey-status-value.cancelled {
+    color: #f44336;
+    font-weight: 800;
 }
 
 .journey-header {
@@ -141,7 +145,48 @@
     color: #888;
 }
 
-.recentBooking {
+.recentBookings {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-around;
+    gap: 10px;
+}
+
+.recentBooking {
+    flex: 1;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+}
+
+.actionButtons {
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .form-row {
+        flex-direction: column;
+
+        .form-group {
+            width: 100%;
+        }
+    }
+
+    .swap-button {
+        margin-left: 100px;
+        margin-bottom: 20px;
+    }
+
+    .recentBookings {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .recentBooking {
+        width: 90%;
+        margin-bottom: 20px;
+        margin-right: 10px;
+    }
 }

@@ -38,8 +38,8 @@
                     <div class="form-row">
                         <div class="form-group">
                             <label for="date">Date of Travel</label>
-                            <input nbInput fullWidth id="date" placeholder="DD-MM-YYYY" [nbDatepicker]="datepicker" [(ngModel)]="booking.date"
-                                name="date">
+                            <input nbInput fullWidth id="date" placeholder="DD-MM-YYYY" [nbDatepicker]="datepicker"
+                                [(ngModel)]="booking.date" name="date">
                             <nb-datepicker #datepicker format="dd-MM-yyyy" [min]="min"></nb-datepicker>
                         </div>
 
@@ -60,96 +60,42 @@
             </nb-card>
         </form>
 
-
-
-        <!-- <nb-card>
+        <nb-card>
             <nb-card-header>
                 Recent Bookings
             </nb-card-header>
-
             <nb-card-body>
-                <div class="recentBooking">
-                    <nb-card>
-                        <nb-card-header class="journey-header">
-                            <div class="journey-title">TPJ ADI SPL (09420)</div>
-                            <div class="journey-pnr">
-                                <span>PNR: 4910778392</span>
-                                <nb-icon icon="email-outline"></nb-icon>
-                            </div>
-                        </nb-card-header>
+                <div class="recentBookings">
+                    <div class="recentBooking" *ngFor="let journey of filteredJourneys">
+                        <nb-card>
+                            <nb-card-header class="journey-header">
+                                <div class="journey-pnr">
+                                    <span>Ticket No: {{ journey.ticketNo }}</span>
+                                    <nb-icon icon="email-outline"></nb-icon>
+                                </div>
+                            </nb-card-header>
+                            <nb-card-body>
+                                <div class="journey-details">
+                                    <p>{{ journey.origin }} - {{ journey.destination }}</p>
+                                    <p>{{ journey.journeyDate }}</p>
+                                </div>
+                                <div class="journey-status">
+                                    <span class="journey-status-label">STATUS:</span>
+                                    <span
+                                        [ngClass]="{'journey-status-value': true, 'booked': journey.ticketStatus === 'BOOKED', 'cancelled': journey.ticketStatus === 'CANCELLED'}">
+                                        {{ journey.ticketStatus }}
+                                    </span>
+                                </div>
 
-                        <nb-card-body>
-                            <div class="journey-details">
-                                <p>16:55 | Surat (ST)</p>
-                                <p>Mon, 27 May</p>
-                            </div>
-
-                            <div class="journey-status">
-                                <span class="journey-status-label">STATUS:</span>
-                                <span class="journey-status-value status-approved">TDR APPROVED</span>
-                            </div>
-
-                            <div class="journey-time">
-                                <span class="journey-time-value">01h 38m</span>
-                            </div>
-                        </nb-card-body>
-                    </nb-card>
-
-                    <nb-card>
-                        <nb-card-header class="journey-header">
-                            <div class="journey-title">BDTS UDN SF SPL (09055)</div>
-                            <div class="journey-pnr">
-                                <span>PNR: 8718629138</span>
-                                <nb-icon icon="email-outline"></nb-icon>
-                            </div>
-                        </nb-card-header>
-
-                        <nb-card-body>
-                            <div class="journey-details">
-                                <p>12:32 | Vapi (VAPI)</p>
-                                <p>Mon, 27 May</p>
-                            </div>
-
-                            <div class="journey-status">
-                                <span class="journey-status-label">STATUS:</span>
-                                <span class="journey-status-value status-booked">BOOKED</span>
-                            </div>
-
-                            <div class="journey-time">
-                                <span class="journey-time-value">01h 33m</span>
-                            </div>
-                        </nb-card-body>
-                    </nb-card>
-
-                    <nb-card>
-                        <nb-card-header class="journey-header">
-                            <div class="journey-title">ADI GKP EXP (19489)</div>
-                            <div class="journey-pnr">
-                                <span>PNR: 8518243842</span>
-                                <nb-icon icon="email-outline"></nb-icon>
-                            </div>
-                        </nb-card-header>
-
-                        <nb-card-body>
-                            <div class="journey-details">
-                                <p>09:10 | Ahmedabad Jn (ADI)</p>
-                                <p>Sat, 18 May</p>
-                            </div>
-
-                            <div class="journey-status">
-                                <span class="journey-status-label">STATUS:</span>
-                                <span class="journey-status-value status-booked">BOOKED</span>
-                            </div>
-
-                            <div class="journey-time">
-                                <span class="journey-time-value">29h 15m</span>
-                            </div>
-                        </nb-card-body>
-                    </nb-card>
+                                <div class="actionButtons">
+                                    <button status="primary" (click)="viewTicket(journey.ticketNo)" nbButton outline size="small"><nb-icon
+                                            icon="eye"></nb-icon></button>
+                                </div>
+                            </nb-card-body>
+                        </nb-card>
+                    </div>
                 </div>
             </nb-card-body>
-        </nb-card> -->
-
-
+        </nb-card>
     </div>
 </nb-layout-column>
