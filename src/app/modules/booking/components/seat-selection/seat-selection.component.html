@@ -32,6 +32,14 @@
             <span class="step-title">Passenger Details</span>
         </nb-alert>
 
+        <div class="pastPassenger-details">
+            <label class="passenger-label">Select from Past Passenger</label>
+            <nb-select class="passenger-field" placeholder="Select Passenger" [(ngModel)]="passengerDetails" multiple>
+                <nb-icon nbPrefix icon="person-outline"></nb-icon>
+                <nb-option *ngFor="let passenger of pastPassengers" [value]="passenger">{{ passenger.name }}</nb-option>
+            </nb-select>
+        </div>
+
         <div *ngFor="let passenger of passengerDetails; let i = index" class="passenger-details payment-details-row">
             <label class="passenger-label"><nb-icon nbPrefix icon="person"></nb-icon> Passenger {{i + 1}}</label>
             <nb-form-field class="passenger-field">

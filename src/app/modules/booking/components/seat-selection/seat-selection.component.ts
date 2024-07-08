@@ -60,6 +60,9 @@ export class SeatSelectionComponent implements OnInit {
   loggedInUser: any;
   date: string = '';
 
+  pastPassengers: any[] = [];
+  selectedPastPassengers: Passenger[] = [];
+
   constructor(
     private route: ActivatedRoute,
     private bookingService: BookingService,
@@ -82,6 +85,9 @@ export class SeatSelectionComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.pastPassengers = this.bookingService.getPastPassengerDetails();
+    console.log('Past Passengers:', this.pastPassengers);
+
     this.loggedInUser = this.userService.getCurrentUser(); // Get logged-in user
 
     this.route.params.subscribe(params => {
@@ -92,7 +98,7 @@ export class SeatSelectionComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       this.passengers = +params['passengers'] || 1;
       this.generatePassengerFields(this.passengers);
-      this.date = params['date'] || ''; // Retrieve date from queryParams
+      this.date = params['date'] || ''; 
       this.calculateFare();
     });
 
@@ -143,8 +149,6 @@ export class SeatSelectionComponent implements OnInit {
     }
   }
 
-
-
   private generateSeatMap(bus: Bus): any[] {
     return [
       {
@@ -183,8 +187,6 @@ export class SeatSelectionComponent implements OnInit {
     return seats;
   }
 
-
-
   private generatePassengerFields(passengers: number) {
     this.passengerDetails = Array.from({ length: passengers }, () => ({
       name: '',
@@ -215,13 +217,29 @@ export class SeatSelectionComponent implements OnInit {
     }
   }
 
-
   getSelectedSeats(): string[] {
     return this.seatMapSections.flatMap(section =>
       section.rows.flatMap((row: Seat[]) =>
         row.filter((seat: Seat) => seat.class.includes('selected')).map((seat: Seat) => seat.number)
       )
     );
+  }
+
+  selectPastPassenger(passenger: Passenger) {
+    const selectedCount = this.selectedPastPassengers.length;
+
+    if (this.passengerDetails.length === this.passengers) {
+      this.toastrService.warning('You can only select passengers equal to the number of passengers.', 'Warning');
+      return;
+    }
+
+    this.selectedPastPassengers.push(passenger);
+    this.passengerDetails.push(passenger);
+  }
+
+  removePastPassenger(index: number) {
+    this.selectedPastPassengers.splice(index, 1);
+    this.passengerDetails.splice(index, 1);
   }
 
   bookTicket() {
@@ -291,7 +309,6 @@ export class SeatSelectionComponent implements OnInit {
     }
   }
 
-
   private calculateDuration(departureTime: string, arrivalTime: string): string {
     const [depHour, depMinute] = departureTime.split(':').map(Number);
     const [arrHour, arrMinute] = arrivalTime.split(':').map(Number);
@@ -321,7 +338,6 @@ export class SeatSelectionComponent implements OnInit {
 
     return journeyDateObj.toISOString().split('T')[0];
   }
-
 
   private generateTicketId(): string {
     const bookings = JSON.parse(localStorage.getItem('bookings') || '[]');

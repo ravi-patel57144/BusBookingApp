@@ -150,6 +150,25 @@
     }
 }
 
+.pastPassenger-details {
+    display: flex;
+    margin-bottom: 15px;
+
+    flex-direction: column;
+    align-items: center;
+
+    nb-form-field,
+    nb-select {
+        flex: 1;
+        margin-right: 15px;
+    }
+
+    nb-form-field:last-child,
+    nb-select:last-child {
+        margin-right: 0;
+    }
+}
+
 .payment-method {
     margin-bottom: 15px;
     display: flex;

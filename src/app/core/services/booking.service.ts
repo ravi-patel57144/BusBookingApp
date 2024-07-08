@@ -215,6 +215,20 @@ export class BookingService {
     }
   }
 
+  getPastPassengerDetails(): { name: string, age: number, gender: string }[] {
+    const bookings: any[] = JSON.parse(localStorage.getItem('bookings') || '[]');
+    const passengerDetails: { name: string, age: number, gender: string }[] = bookings.flatMap((booking: any) =>
+      booking.passengerDetails.map((passenger: any) => ({
+        name: passenger.name,
+        age: passenger.age,
+        gender: passenger.gender
+      }))
+    );
 
+    const uniquePassengerDetails = Array.from(new Set(passengerDetails.map(p => JSON.stringify(p))))
+      .map((str: string) => JSON.parse(str));
+
+    return uniquePassengerDetails;
+  }
 
 }
